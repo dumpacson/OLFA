@@ -22,10 +22,6 @@ Abdelhadi Hadj Sahraoui (1919059)<br></br>
 
 - [Features & Functionalities](#features--functionalities)
 
-- [Sitemap](#sitemap)
-
-- [Entity-Relationship Diagram](#entity-relationship-diagram)
-
 - [Sequence Diagram](#sequence-diagram)
   
 - [Screens](#screens)
@@ -76,15 +72,6 @@ The general objectives of this mobile application are to develop a reliable, con
 - **Notifications and Reminders:** The app sends notifications and reminders to users about important updates, upcoming events, or new messages in the chat. This feature ensures that students stay informed and engaged with the community.
 
 - **Search and Discovery:** The app may include a search functionality that allows students to find specific topics, keywords, or user profiles within the community. This feature makes it easier for students to locate relevant discussions or connect with peers who share similar interests.
-
-
-	
-
-## Sitemap
-
-The sitemap below contains information regarding the website's pages and the relationships between them.
-
-Click [here](https://github.com/dumpacson/Blood-Bank-Donation-System/issues/6#issue-1557779422) to view the sitemap.<br/><br/>
 	
 	
 
@@ -100,24 +87,11 @@ Click [here](https://github.com/dumpacson/Blood-Bank-Management-System/issues/4#
 
 ## Screens
 
-- [Register & Login](https://github.com/dumpacson/Blood-Bank-Donation-System/issues/8#issue-1558318085)<br/><br/>
 
-<ins>Admin's view</ins>
-
-- [Home](https://github.com/dumpacson/Blood-Bank-Donation-System/issues/7#issue-1558316947)
-- [List of Donors](https://github.com/dumpacson/Blood-Bank-Donation-System/issues/12#issue-1558327120)
-- [List of Donations](https://github.com/dumpacson/Blood-Bank-Donation-System/issues/13#issue-1558327558)
-- [List of Available Blood](https://github.com/dumpacson/Blood-Bank-Donation-System/issues/14#issue-1558328282)
-- [List of Appointments](https://github.com/dumpacson/Blood-Bank-Donation-System/issues/15#issue-1558328588)<br/><br/>
-
-
-<ins>Donor's view</ins>
-
-- [Home](https://github.com/dumpacson/Blood-Bank-Donation-System/issues/9#issue-1558324827)
-- [Make an Appointment](https://github.com/dumpacson/Blood-Bank-Donation-System/issues/10#issue-1558325790)
-- [Account Details](https://github.com/dumpacson/Blood-Bank-Donation-System/issues/11#issue-1558326136)<br/><br/>
 
 ## Screen Navigation & Widgets
+
+
 
 ## References
 	
