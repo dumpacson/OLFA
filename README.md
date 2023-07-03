@@ -1,10 +1,10 @@
-# OLFA
+# OLFA - IIUM MAHALLAH ONLINE COMMUNITY
   
 #### INFO 4335 MOBILE APPLICATION DEVELOPMENT
 #### SECTION 1
 #### SEMESTER 2, SESSION 2022/2023<br></br>
 
- 
+
 ## Members
 Ahmad NorSafwan Bin Norasidin (2010279)
 
@@ -21,13 +21,13 @@ Abdelhadi Hadj Sahraoui (1919059)<br></br>
 - [Objective](#objective)
 
 - [Features & Functionalities](#features--functionalities)
-	
-- [Sitemap](#sitemap)
-	
-- [Entity-Relationship Diagram](#entity-relationship-diagram)
-	
-- [Sequence Diagram](#sequence-diagram)
 
+- [Sitemap](#sitemap)
+
+- [Entity-Relationship Diagram](#entity-relationship-diagram)
+
+- [Sequence Diagram](#sequence-diagram)
+  
 - [Screens](#screens)
 
 - [Screen Navigation & Widget](#screen-navigation--widgets)
@@ -38,62 +38,45 @@ Abdelhadi Hadj Sahraoui (1919059)<br></br>
   
 ## Introduction
 
-This blood bank management system application was created based on the needs of a blood bank management team. The system aims to provide information on all the process that goes into a blood donation. The system will also provide the functionality of registering online to new donors and making an appointment to avoid wasting time.<br/><br/>
-Already registered donors can also see all their past donations in one view making it easy if they ever want to look through and check.<br/><br/>
-On the admin/staff side, they can view the details of all the donations made and the details of all the donors in 2 separate views. They can handle the data needed to manage blood donations and donor's information. There will also be a view of all the available blood bags in the bank.<br></br>
+OLFA is an interactive chatting platform designed specifically for IIUM students to facilitate communication and foster a sense of community among residents of different mahallahs. This platform offers a convenient and engaging way for students to connect, exchange information, and share experiences with their peers across various mahallahs within the IIUM campus.
+With the lfa platform, IIUM students can participate in real-time chat conversations with fellow students from different mahallahs. This feature allows for instant communication, enabling students to ask questions, seek advice, or engage in discussions on various topics of interest. Whether it's sharing academic insights, organising study groups, or discussing campus events, OLFA serves as a virtual space for students to connect and support each other.
+
 	
 
 ## Objective
 
-The general objectives of this web application are to develop a reliable, convenient and is easy to use for everyone who wishes to donate blood. Our goals are as stated below.
+The general objectives of this mobile application are to develop a reliable, convenient and easy to use system for everyone who would like to connect with other students from other mahallahs and inquire real-time news regarging their respective mahallah. Our goals are as stated below.
 
-- Provide information for donors who want to inform themselves of all the process that goes into a blood donation.
-  
-- For donors who would prefer to register and make an appointment ahead of time to avoid wasting time.
+- **Facilitate Communication:** The app aims to provide a platform for IIUM students to communicate and interact with each other. It allows students from different mahallahs to engage in real-time chat conversations, fostering connections and relationships among residents of the IIUM community.
 
-- Provide an application that is functional for donors to track all their blood donations.
-  
-- Provide an application for medical staffs to view all the details of the donors and donations.
-  
-- To make blood donations easily accessible from one website.<br></br>
+- **Foster a Sense of Community:** The app aims to create a strong sense of community among IIUM students. By providing a space for students to connect and share experiences, Olfa encourages a supportive and inclusive environment where students can form meaningful relationships with their peers.
+
+- **Exchange Information:** The app enables students to exchange information effectively. It allows them to share academic insights, ask questions, seek advice, and discuss various topics of interest related to their studies or campus life.
+
+- **Enhance Engagement:** Olfa seeks to enhance student engagement within the IIUM community. By offering a convenient and engaging platform, the app encourages students to actively participate in discussions, collaborate on projects, organise study groups, and stay informed about campus events.
+
+- **Support and Encourage:** The app aims to provide support and encouragement to IIUM students. It serves as a virtual space where students can find guidance, seek help, and receive encouragement from their peers, ultimately enhancing their overall university experience.
+
 
 	
 ## Features & Functionalities
 
-#### Homepage
-- Introduction – A short brief on the blood bank’s website & also information regarding the blood donation process.
-	
-- Make an Appointment Button - A button in the make an appointment section that redirects to the make an appointment page.
-	
-- Contact Us – Blood Bank’s Information.<br/><br/>
-	  
-	
-#### Register page
-- Page for new donors to register for new accounts in the system.<br/><br/>
-	
-    
-#### Login page
-- Page for staffs and donors to log into their account.<br/><br/>
+- **Real-Time Chat:** The app provides a real-time chat feature that allows IIUM students to communicate with each other instantly. This feature enables students to engage in one-on-one or group conversations, fostering interaction and collaboration among residents of different mahallahs.
 
+- **Mahallah-specific Channels:** The app may include specific channels or chat rooms dedicated to each mahallah within the IIUM campus. This feature allows students to connect with peers from their own mahallah and discuss mahallah-specific topics or events.
 
- #### Make An Appointment Page
-  
-- New & old donors can make an appointment to avoid registration during walk-in & waiting in line to donate their blood.<br></br>
+- **Topic-based Discussions:** The app enables students to participate in topic-based discussions. It may offer different chat rooms or channels based on various subjects or interests, such as academics, extracurricular activities, campus events, or general discussions.
 
+- **Information Sharing:** The app allows students to share information easily. They can post announcements, share important updates, or provide helpful resources within the chat platform. This feature facilitates the exchange of valuable information among IIUM students.
 
-#### Profile Pages
-	
-<ins>Admin</ins>
-  
-- Profile Icon - Dropdown (account details, donations’ table, donors’ table, blood bags’ table) 
-- Donors Page - List of all the details of the donors. (ID, Name, Age, Gender, Blood Type, Number of Donations)
-- Donations Page - List of all the details of the donations. (ID, Name, Age, Gender, Blood Type, Date of Donation)
-- Available Blood Bags Page - List of all the stored blood bags in the blood bank. (Blood Type, Amount)<br/><br/>
+- **Study Groups and Collaboration:** Olfa provides a platform for students to form study groups and collaborate on academic projects. Students can create dedicated chat groups for specific courses or subjects, facilitating discussions, resource sharing, and collaboration.
 
-<ins>Donor</ins>
+- **User Profiles:** Each student using the app can create a personal profile. This feature allows students to provide basic information about themselves, including their mahallah, program of study, interests, and hobbies. User profiles enhance personal connections and help students find like-minded peers.
 
-- Profile Icon - Dropdown (account details, past donations) 
-- Make An Appointment<br/><br/>
+- **Notifications and Reminders:** The app sends notifications and reminders to users about important updates, upcoming events, or new messages in the chat. This feature ensures that students stay informed and engaged with the community.
+
+- **Search and Discovery:** The app may include a search functionality that allows students to find specific topics, keywords, or user profiles within the community. This feature makes it easier for students to locate relevant discussions or connect with peers who share similar interests.
+
 
 	
 
