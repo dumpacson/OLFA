@@ -1,8 +1,8 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:flutterfire_ui/auth.dart';
-import 'package:flutter_chat_app/comps/animated-dialog.dart';
 import 'package:flutter_chat_app/comps/styles.dart';
+import 'package:flutterfire_ui/auth.dart';
+import 'animated-dialog.dart';
 
 class ChatWidgets {
   static Widget card({title, time, subtitle, onTap}) {
@@ -16,15 +16,16 @@ class ChatWidgets {
           leading: const Padding(
             padding: EdgeInsets.all(0.0),
             child: CircleAvatar(
-                backgroundColor: Colors.grey,
-                child: Icon(
-                  Icons.person,
-                  size: 30,
-                  color: Colors.white,
-                )),
+              backgroundColor: Colors.grey,
+              child: Icon(
+                Icons.person,
+                size: 30,
+                color: Colors.white,
+              ),
+            ),
           ),
           title: Text(title),
-          subtitle:subtitle !=null? Text(subtitle): null,
+          subtitle: subtitle != null ? Text(subtitle) : null,
           trailing: Padding(
             padding: const EdgeInsets.only(right: 8.0),
             child: Text(time),
@@ -34,14 +35,31 @@ class ChatWidgets {
     );
   }
 
-  static Widget circleProfile({onTap,name}) {
+static Widget announcements() {
+  return Padding(
+    padding: const EdgeInsets.symmetric(vertical: 10.0),
+    child: Card(
+      elevation: 0,
+      child: ListTile(
+        title: const Text('Announcements'),
+        subtitle: const Text('See what\'s new'),
+        onTap: () {
+          //TODO: Show announcements
+        },
+      ),
+    ),
+  );
+}
+
+
+  static Widget circleProfile({onTap, name}) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 12.0),
       child: InkWell(
         onTap: onTap,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
-          children:  [
+          children: [
             const CircleAvatar(
               radius: 25,
               backgroundColor: Colors.grey,
@@ -51,15 +69,28 @@ class ChatWidgets {
                 color: Colors.white,
               ),
             ),
-            SizedBox(width: 50,child: Center(child: Text(name,style: const TextStyle(height: 1.5,fontSize: 12,color: Colors.white),overflow: TextOverflow.ellipsis,)))
+            SizedBox(
+              width: 50,
+              child: Center(
+                child: Text(
+                  name,
+                  style: const TextStyle(
+                    height: 1.5,
+                    fontSize: 12,
+                    color: Colors.white,
+                  ),
+                  overflow: TextOverflow.ellipsis,
+                ),
+              ),
+            ),
           ],
         ),
       ),
     );
   }
 
-  static Widget messagesCard(bool check, message, time) {
-
+  static Widget messagesCard(
+      bool check, message, time, {String? imageUrl}) {
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: Row(
@@ -82,9 +113,21 @@ class ChatWidgets {
               margin: const EdgeInsets.all(8),
               padding: const EdgeInsets.all(10),
               decoration: Styles.messagesCardStyle(check),
-              child: Text(
-                '$message\n\n$time',
-                style: TextStyle(color: check ? Colors.white : Colors.black),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  if (imageUrl != null)
+                    Image.network(
+                      imageUrl,
+                      height: 100,
+                      width: double.infinity,
+                      fit: BoxFit.cover,
+                    ),
+                  Text(
+                    '$message\n\n$time',
+                    style: TextStyle(color: check ? Colors.white : Colors.black),
+                  ),
+                ],
               ),
             ),
           ),
@@ -104,7 +147,7 @@ class ChatWidgets {
     );
   }
 
-  static messageField({required onSubmit}) {
+  static Widget messageField({required onSubmit}) {
     final con = TextEditingController();
 
     return Container(
@@ -119,7 +162,7 @@ class ChatWidgets {
     );
   }
 
-  static drawer(context) {
+  static Widget drawer(context) {
     return Drawer(
       backgroundColor: Colors.indigo.shade400,
       child: SafeArea(
@@ -128,7 +171,7 @@ class ChatWidgets {
           child: Theme(
             data: ThemeData.dark(),
             child: Column(
-              children:  [
+              children: [
                 const CircleAvatar(
                   radius: 60,
                   backgroundColor: Colors.grey,
@@ -142,18 +185,23 @@ class ChatWidgets {
                 const Divider(
                   color: Colors.white,
                 ),
-                 ListTile(
+                ListTile(
                   leading: const Icon(Icons.person),
                   title: const Text('Profile'),
-                  onTap: (){
-                    Navigator.push(context, MaterialPageRoute(builder: (context)=>const ProfileScreen()));
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => const ProfileScreen(),
+                      ),
+                    );
                   },
                 ),
                 ListTile(
                   leading: const Icon(Icons.logout),
                   title: const Text('Logout'),
-                  onTap: ()async=>await FirebaseAuth.instance.signOut(),
-                )
+                  onTap: () async => await FirebaseAuth.instance.signOut(),
+                ),
               ],
             ),
           ),
@@ -162,20 +210,23 @@ class ChatWidgets {
     );
   }
 
-  static searchBar(bool open, ) {
+  static Widget searchBar(bool open) {
     return AnimatedDialog(
       height: open ? 800 : 0,
       width: open ? 400 : 0,
-
     );
   }
 
-  static searchField({Function(String)? onChange}) {
+
+
+
+
+  static Widget searchField({Function(String)? onChange}) {
     return Container(
       margin: const EdgeInsets.all(10),
       decoration: Styles.messageFieldCardStyle(),
       child: TextField(
-       onChanged: onChange,
+        onChanged: onChange,
         decoration: Styles.searchTextFieldStyle(),
       ),
     );
