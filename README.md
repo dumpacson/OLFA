@@ -90,6 +90,9 @@ Click [here](https://github.com/dumpacson/Blood-Bank-Management-System/issues/4#
 
 ## Screens
 
+The sitemap below contains information regarding the website's pages and the relationships between them.
+
+Click [here](https://github.com/dumpacson/Blood-Bank-Donation-System/issues/6#issue-1557779422) to view the sitemap.<br/><br/>
 
 
 ## Screen Navigation & Widgets
