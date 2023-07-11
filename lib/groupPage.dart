@@ -20,7 +20,7 @@ class GroupPage extends StatefulWidget {
   final String groupChatId;
   final String groupName;
 
-  GroupPage({
+  const GroupPage({super.key, 
     required this.selectedUserIds,
     required this.groupChatId,
     required this.groupName,
@@ -31,8 +31,8 @@ class GroupPage extends StatefulWidget {
 }
 
 class _GroupPageState extends State<GroupPage> {
-  TextEditingController _messageController = TextEditingController();
-  TextEditingController _groupNameController = TextEditingController();
+  final TextEditingController _messageController = TextEditingController();
+  final TextEditingController _groupNameController = TextEditingController();
   List<String> memberIds = [];
   List<String> memberNames = [];
   String groupName = '';
@@ -55,7 +55,7 @@ class _GroupPageState extends State<GroupPage> {
     final snapshot = await FirebaseFirestore.instance.collection('Users').get();
     final List<String> fetchedMemberIds = [];
     final List<String> fetchedMemberNames = [];
-    snapshot.docs.forEach((doc) {
+    for (var doc in snapshot.docs) {
       final data = doc.data();
       final memberId = doc.id;
       final memberName = data['name'] ?? '';
@@ -63,7 +63,7 @@ class _GroupPageState extends State<GroupPage> {
         fetchedMemberIds.add(memberId);
         fetchedMemberNames.add(memberName);
       }
-    });
+    }
     setState(() {
       memberIds = fetchedMemberIds;
       memberNames = fetchedMemberNames;
@@ -136,7 +136,7 @@ class _GroupPageState extends State<GroupPage> {
             ? TextField(
                 controller: _groupNameController,
                 onSubmitted: (_) => _submitGroupName(),
-                decoration: InputDecoration(
+                decoration: const InputDecoration(
                   border: InputBorder.none,
                 ),
               )
@@ -161,7 +161,7 @@ class _GroupPageState extends State<GroupPage> {
                 groupName = value;
               });
             },
-            decoration: InputDecoration(
+            decoration: const InputDecoration(
               labelText: 'Group Name',
             ),
           ),
@@ -180,7 +180,7 @@ class _GroupPageState extends State<GroupPage> {
                 }
 
                 if (snapshot.connectionState == ConnectionState.waiting) {
-                  return CircularProgressIndicator();
+                  return const CircularProgressIndicator();
                 }
 
                 List<QueryDocumentSnapshot> messages = snapshot.data!.docs;
@@ -214,14 +214,14 @@ class _GroupPageState extends State<GroupPage> {
                                   color: isCurrentUser ? Colors.white : Colors.black,
                                 ),
                               ),
-                              SizedBox(height: 4.0),
+                              const SizedBox(height: 4.0),
                               Text(
                                 message,
                                 style: TextStyle(
                                   color: isCurrentUser ? Colors.white : Colors.black,
                                 ),
                               ),
-                              SizedBox(height: 4.0),
+                              const SizedBox(height: 4.0),
                               Text(
                                 formatHour(timestamp),
                                 style: TextStyle(
@@ -246,14 +246,14 @@ class _GroupPageState extends State<GroupPage> {
                 Expanded(
                   child: TextField(
                     controller: _messageController,
-                    decoration: InputDecoration(
+                    decoration: const InputDecoration(
                       hintText: 'Type a message',
                     ),
                   ),
                 ),
                 IconButton(
                   onPressed: _sendMessage,
-                  icon: Icon(Icons.send),
+                  icon: const Icon(Icons.send),
                 ),
               ],
             ),
