@@ -17,7 +17,7 @@ Abdelhadi Hadj Sahraoui (1919059)<br></br>
 Contributions:
 
 - Authentication -
-- Notifications -
+- Notifications - Safwan
 - Chat -
 	
 	
