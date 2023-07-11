@@ -4,7 +4,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_chat_app/comps/styles.dart';
 import 'package:flutterfire_ui/auth.dart';
 import '../groupPage.dart';
+import '../homepage.dart';
+import 'package:flutter_chat_app/announcement.dart' as announcement;
 import 'animated-dialog.dart';
+
 
 class ChatWidgets {
   static Widget card({title, time, subtitle, onTap}) {
@@ -304,6 +307,88 @@ class GroupsHomePage extends StatelessWidget {
             },
           );
         },
+      ),
+      bottomNavigationBar: BottomAppBar(
+        shape: const CircularNotchedRectangle(),
+        notchMargin: 20,
+        child: SizedBox(
+          height: 60,
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: <Widget>[
+              Row(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  MaterialButton(
+                    minWidth: 130,
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => const announcement.AnnouncementPage(),
+                        ),
+                      );
+                    },
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Icon(
+                          Icons.announcement,
+                          color: Colors.indigo.shade400,
+                        ),
+                        Text(
+                          'Announcement',
+                          style: TextStyle(color:Colors.indigo.shade400),
+                        )
+                      ],
+                    ),
+                  ),
+                  MaterialButton(
+                    minWidth: 130,
+                    onPressed: () {},
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Icon(
+                          Icons.group,
+                          color: Colors.indigo.shade400,
+                        ),
+                        Text(
+                          'Groups',
+                          style: TextStyle(color:Colors.indigo.shade400),
+                        ),
+                      ],
+                    ),
+                  ),
+                  MaterialButton(
+                    minWidth: 130,
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => const MyHomePage(),
+                        ),
+                      );
+                    },
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Icon(
+                          Icons.chat,
+                          color: Colors.indigo.shade400,
+                        ),
+                        Text(
+                          'Chats',
+                          style: TextStyle(color: Colors.indigo.shade400),
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
+            ],
+          ),
+        ),
       ),
     );
   }
