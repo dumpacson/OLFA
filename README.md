@@ -30,12 +30,12 @@ Contributions:
 - [Objective](#objective)
 
 - [Features & Functionalities](#features--functionalities)
-
-- [Sequence Diagram](#sequence-diagram)
   
 - [Screen Navigation (Routing)](#screens-Navigation-(Routing))
 
-- [Screen Navigation & Widget](#screen-navigation--widgets)
+- [Widgets (UI & Reusable)](#Widgets-(UI--Reusable))
+
+- [Sequence Diagram](#sequence-diagram)
 
 - [References](#references)
 
@@ -75,16 +75,6 @@ The general objectives of this mobile application are to develop a reliable, con
 - **Search:** The app allows students to search for the users available in the app using the search function. The students can search for other students that have registered for the app by their username and start a new chat with them.
 
 - **Notifications and Reminders:** The app sends notifications and reminders to users about important updates, upcoming events, or new messages in the chat. This feature ensures that students stay informed and engaged with the community.
-	
-	
-
-## Sequence Diagram
-
-The [Sequence Diagram](https://github.com/dumpacson/Blood-Bank-Management-System/issues/4#issue-1512850541) below depicts how users interact with the Blood Donation Website. Starting with the general part of the website, The user opens the web browser and types in the URL of the website. The web browser sends a request to the server to access the website. The server receives the request and retrieves the necessary content from the database. The server sends the content back to the web browser. The web browser displays the content to the user.
-
-
-
-Click [here](https://github.com/dumpacson/Blood-Bank-Management-System/issues/4#issue-1512850541) to view the Sequence Diagram.<br/><br/>
 
 
 
@@ -95,8 +85,18 @@ The sitemap below contains information regarding the website's pages and the rel
 Click [here](https://github.com/dumpacson/OLFA/issues/1#issue-1799785490) to view the sitemap.<br/><br/>
 
 
-## Screen Navigation & Widgets
 
+## Widgets (UI & Reusable)
+
+
+
+
+## Sequence Diagram
+
+The [Sequence Diagram](https://github.com/dumpacson/Blood-Bank-Management-System/issues/4#issue-1512850541) below depicts how users interact with the Blood Donation Website. Starting with the general part of the website, The user opens the web browser and types in the URL of the website. The web browser sends a request to the server to access the website. The server receives the request and retrieves the necessary content from the database. The server sends the content back to the web browser. The web browser displays the content to the user.
+
+
+Click [here](https://github.com/dumpacson/Blood-Bank-Management-System/issues/4#issue-1512850541) to view the Sequence Diagram.<br/><br/>
 
 
 ## References
