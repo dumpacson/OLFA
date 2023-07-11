@@ -33,7 +33,7 @@ Contributions:
 
 - [Sequence Diagram](#sequence-diagram)
   
-- [Screens](#screens)
+- [Screen Navigation (Routing)](#screens-Navigation-(Routing))
 
 - [Screen Navigation & Widget](#screen-navigation--widgets)
 
@@ -88,7 +88,7 @@ Click [here](https://github.com/dumpacson/Blood-Bank-Management-System/issues/4#
 
 
 
-## Screens
+## Screen Navigation (Routing)
 
 The sitemap below contains information regarding the website's pages and the relationships between them.
 
