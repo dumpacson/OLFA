@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_chat_app/comps/styles.dart';
 import 'package:flutter_chat_app/comps/widgets.dart';
 import 'package:intl/intl.dart';
+import 'package:flutter_chat_app/Logics/functions.dart';
 
 class ChatPage extends StatefulWidget {
   final String id;
@@ -15,6 +16,13 @@ class ChatPage extends StatefulWidget {
 }
 
 class _ChatPageState extends State<ChatPage> {
+  
+  @override
+  void initState() {
+    super.initState();
+  }
+  
+  // ignore: prefer_typing_uninitialized_variables
   var roomId;
   @override
   Widget build(BuildContext context) {
@@ -47,7 +55,7 @@ class _ChatPageState extends State<ChatPage> {
                   stream: firestore.collection('Users').doc(widget.id).snapshots(),
                   builder: (context,AsyncSnapshot<DocumentSnapshot<Map<String, dynamic>>> snapshot) {
                     return !snapshot.hasData?Container(): Text(
-                      'Last seen : ' + DateFormat('hh:mm a').format(snapshot.data!['date_time'].toDate()),
+                      'Last seen : ${DateFormat('hh:mm a').format(snapshot.data!['date_time'].toDate())}',
                       style: Styles.h1().copyWith(
                           fontSize: 12,
                           fontWeight: FontWeight.normal,
@@ -129,7 +137,23 @@ class _ChatPageState extends State<ChatPage> {
           ),
           Container(
             color: Colors.white,
-            child: ChatWidgets.messageField(onSubmit: (controller) {
+            child: ChatWidgets.messageField(onSubmit: (controller) async {
+              String name = 'safwan';
+              String title = 'OLFA';
+              String body = 'message';
+              
+              if(name != "") {
+                DocumentSnapshot snap = await FirebaseFirestore.instance
+                    .collection("UserTokens")
+                    .doc(name)
+                    .get();
+
+                  String token = snap['token'];
+                  print(token);
+
+                  Functions.sendPushMessage(token, title, body);
+              }
+              
               if(controller.text.toString() != ''){
                 if (roomId != null) {
                   Map<String, dynamic> data = {
