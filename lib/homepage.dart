@@ -1,12 +1,16 @@
+// ignore_for_file: avoid_print
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_chat_app/Logics/functions.dart';
 import 'package:flutter_chat_app/chatpage.dart';
+import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:intl/intl.dart';
 import 'comps/styles.dart';
 import 'comps/widgets.dart';
-import 'package:flutter_chat_app/announcement.dart' as Announcement;
+import 'package:flutter_chat_app/announcement.dart' as announcement;
 import 'groupPage.dart'; // Import groupPage.dart
 
 class MyHomePage extends StatefulWidget {
@@ -17,12 +21,69 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+  String? mtoken = "";
+  late FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin = FlutterLocalNotificationsPlugin();
+
   @override
   void initState() {
-    Functions.updateAvailability();
     super.initState();
+    Functions.updateAvailability();
+    Functions.requestPermission();
+    getToken();
+    initInfo();
   }
 
+  initInfo(){
+    var androidInitialize = const AndroidInitializationSettings('@mipmap/ic_launcher');
+    var iOSInitialize = const IOSInitializationSettings();
+    var initializationSettings = InitializationSettings(android: androidInitialize, iOS: iOSInitialize);
+    flutterLocalNotificationsPlugin.initialize(initializationSettings, onSelectNotification : (String? payload) async {
+      try{
+        if(payload != null && payload.isNotEmpty) {
+          // Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) {
+          //   return ChatPage(id info: payload.toString());
+          // }
+          // ));
+        } else {
+        }
+      }catch (e) {
+      }
+      return;
+    });
+    
+    FirebaseMessaging.onMessage.listen((RemoteMessage message) async{
+      print (" . . . . . . . . . . . . . . ....onMessage. . . . . . . . . . . . . . . .");
+      print ("onMessage: ${message.notification?.title}/${message.notification?.body}}");
+      
+      BigTextStyleInformation bigTextStyleInformation = BigTextStyleInformation(
+        message.notification!.body.toString(), htmlFormatBigText: true,
+        contentTitle: message.notification!.title.toString(), htmlFormatContentTitle: true,
+      );
+      AndroidNotificationDetails androidPlatformChannelSpecifics = AndroidNotificationDetails(
+        'dbfood', 'dbfood', importance: Importance.high,
+        styleInformation: bigTextStyleInformation, priority: Priority.high, playSound: true,
+      );
+      NotificationDetails platformChannelSpecifics = NotificationDetails(android: androidPlatformChannelSpecifics,
+      iOS: const IOSNotificationDetails()
+      );
+      await flutterLocalNotificationsPlugin.show(0, message.notification?.title,
+      message.notification?.body, platformChannelSpecifics,
+      payload: message.data['body']);
+    });
+  }
+
+  void getToken() async {
+    await FirebaseMessaging.instance.getToken().then(
+      (token) {
+        setState(() {
+          mtoken = token;
+          print("My token is $mtoken");
+        });
+        Functions.saveToken(token!);
+      },
+    );
+  }
+  
   final firestore = FirebaseFirestore.instance;
   bool open = false;
   List<String> selectedUserIds = [];
@@ -32,8 +93,8 @@ class _MyHomePageState extends State<MyHomePage> {
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
-          title: Text('Select Users'),
-          content: Container(
+          title: const Text('Select Users'),
+          content: SizedBox(
             width: double.maxFinite,
             child: StreamBuilder<QuerySnapshot>(
               stream: firestore.collection('Users').snapshots(),
@@ -44,7 +105,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 }
 
                 if (snapshot.connectionState == ConnectionState.waiting) {
-                  return CircularProgressIndicator();
+                  return const CircularProgressIndicator();
                 }
 
                 List<QueryDocumentSnapshot> documents = snapshot.data!.docs;
@@ -93,7 +154,7 @@ class _MyHomePageState extends State<MyHomePage> {
           ),
           actions: <Widget>[
             TextButton(
-              child: Text('Cancel'),
+              child: const Text('Cancel'),
               onPressed: () {
                 setState(() {
                   selectedUserIds.clear();
@@ -102,7 +163,7 @@ class _MyHomePageState extends State<MyHomePage> {
               },
             ),
             TextButton(
-              child: Text('OK'),
+              child: const Text('OK'),
               onPressed: () {
                 // Process the selected users
                 // selectedUserIds contains the selected user IDs
@@ -160,6 +221,7 @@ class _MyHomePageState extends State<MyHomePage> {
     print('Group chat created successfully');
 
     // Navigate to the group chat page with the group chat ID
+    // ignore: use_build_context_synchronously
     Navigator.of(context).push(
       MaterialPageRoute(
         builder: (context) {
@@ -193,7 +255,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 ),
               );
             },
-            icon: Icon(
+            icon: const Icon(
               Icons.group,
               size: 30,
             ),
@@ -404,14 +466,14 @@ class _MyHomePageState extends State<MyHomePage> {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => Announcement.AnnouncementPage(),
+                      builder: (context) => const announcement.AnnouncementPage(),
                     ),
                   );
                 },
-                child: Icon(
+                backgroundColor: Colors.indigo,
+                child: const Icon(
                   Icons.announcement,
                 ),
-                backgroundColor: Colors.indigo,
               ),
             ),
             Positioned(
@@ -419,10 +481,10 @@ class _MyHomePageState extends State<MyHomePage> {
               right: 16,
               child: FloatingActionButton(
                 onPressed: _showUserListDialog,
-                child: Icon(
+                backgroundColor: Colors.indigo,
+                child: const Icon(
                   Icons.add,
                 ),
-                backgroundColor: Colors.indigo,
               ),
             ),
           ],
