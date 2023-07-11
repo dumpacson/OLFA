@@ -31,9 +31,9 @@ Contributions:
 
 - [Features & Functionalities](#features--functionalities)
   
-- [Screen Navigation (Routing)](#Screen-Navigation-(Routing))
+- [Screen Navigation (Routing)](##screen-navigation-routing)
 
-- [Widgets (UI & Reusable)](#Widgets-(UI--Reusable))
+- [Widgets (UI & Reusable)](#widgets-ui--reusable)
 
 - [Sequence Diagram](#sequence-diagram)
 
