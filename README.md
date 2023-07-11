@@ -19,6 +19,7 @@ Contributions:
 - Authentication -
 - Notifications - Safwan
 - Chat -
+- Connection with Firebase - Safwan, Tawfek, Sharif, Hadi
 	
 	
 ## Table of Contents
