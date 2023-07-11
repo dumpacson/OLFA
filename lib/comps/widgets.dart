@@ -35,21 +35,6 @@ class ChatWidgets {
     );
   }
 
-static Widget announcements() {
-  return Padding(
-    padding: const EdgeInsets.symmetric(vertical: 10.0),
-    child: Card(
-      elevation: 0,
-      child: ListTile(
-        title: const Text('Announcements'),
-        subtitle: const Text('See what\'s new'),
-        onTap: () {
-          //TODO: Show announcements
-        },
-      ),
-    ),
-  );
-}
 
 
   static Widget circleProfile({onTap, name}) {
@@ -219,6 +204,26 @@ static Widget announcements() {
 
 
 
+ static Widget announcements() {
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 10.0),
+      child: Card(
+        elevation: 0,
+        child: ListTile(
+          title: const Text('Announcements'),
+          subtitle: const Text('See what\'s new'),
+          onTap: () {
+            // TODO: Show announcements
+          },
+        ),
+      ),
+    );
+  }
+
+
+
+
+
 
 
   static Widget searchField({Function(String)? onChange}) {
@@ -232,3 +237,17 @@ static Widget announcements() {
     );
   }
 }
+
+ class AnnouncementPage extends StatelessWidget {
+    @override
+    Widget build(BuildContext context) {
+      return Scaffold(
+        appBar: AppBar(
+          title: Text('Announcement Page'),
+        ),
+        body: Center(
+          child: Text('This is the announcement page'),
+        ),
+      );
+    }
+  }
