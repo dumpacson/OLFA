@@ -138,7 +138,7 @@ class _ChatPageState extends State<ChatPage> {
           Container(
             color: Colors.white,
             child: ChatWidgets.messageField(onSubmit: (controller) async {
-              String name = 'safwan';
+              String name = 'hadi';
               String title = 'OLFA';
               String body = 'message';
               
