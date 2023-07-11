@@ -466,7 +466,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => const announcement.AnnouncementPage(),
+                      builder: (context) => announcement.AnnouncementPage(),
                     ),
                   );
                 },
