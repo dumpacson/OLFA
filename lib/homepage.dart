@@ -1,16 +1,12 @@
-// ignore_for_file: use_build_context_synchronously, avoid_print
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_chat_app/Logics/functions.dart';
 import 'package:flutter_chat_app/chatpage.dart';
-import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:intl/intl.dart';
 import 'comps/styles.dart';
 import 'comps/widgets.dart';
-import 'package:flutter_chat_app/announcement.dart' as announcement;
+import 'package:flutter_chat_app/announcement.dart' as Announcement;
 import 'groupPage.dart'; // Import groupPage.dart
 
 class MyHomePage extends StatefulWidget {
@@ -21,67 +17,10 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  String? mtoken = "";
-  late FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin = FlutterLocalNotificationsPlugin();
-
   @override
   void initState() {
-    super.initState();
     Functions.updateAvailability();
-    Functions.requestPermission();
-    getToken();
-    initInfo();
-  }
-
-  initInfo(){
-    var androidInitialize = const AndroidInitializationSettings('@mipmap/ic_launcher');
-    var iOSInitialize = const IOSInitializationSettings();
-    var initializationSettings = InitializationSettings(android: androidInitialize, iOS: iOSInitialize);
-    flutterLocalNotificationsPlugin.initialize(initializationSettings, onSelectNotification : (String? payload) async {
-      try{
-        if(payload != null && payload.isNotEmpty) {
-          // Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) {
-          //   return ChatPage(id info: payload.toString());
-          // }
-          // ));
-        } else {
-        }
-      }catch (e) {
-      }
-      return;
-    });
-    
-    FirebaseMessaging.onMessage.listen((RemoteMessage message) async{
-      print (" . . . . . . . . . . . . . . ....onMessage. . . . . . . . . . . . . . . .");
-      print ("onMessage: ${message.notification?.title}/${message.notification?.body}}");
-      
-      BigTextStyleInformation bigTextStyleInformation = BigTextStyleInformation(
-        message.notification!.body.toString(), htmlFormatBigText: true,
-        contentTitle: message.notification!.title.toString(), htmlFormatContentTitle: true,
-      );
-      AndroidNotificationDetails androidPlatformChannelSpecifics = AndroidNotificationDetails(
-        'dbfood', 'dbfood', importance: Importance.high,
-        styleInformation: bigTextStyleInformation, priority: Priority.high, playSound: true,
-      );
-      NotificationDetails platformChannelSpecifics = NotificationDetails(android: androidPlatformChannelSpecifics,
-      iOS: const IOSNotificationDetails()
-      );
-      await flutterLocalNotificationsPlugin.show(0, message.notification?.title,
-      message.notification?.body, platformChannelSpecifics,
-      payload: message.data['body']);
-    });
-  }
-
-  void getToken() async {
-    await FirebaseMessaging.instance.getToken().then(
-      (token) {
-        setState(() {
-          mtoken = token;
-          print("My token is $mtoken");
-        });
-        Functions.saveToken(token!);
-      },
-    );
+    super.initState();
   }
 
   final firestore = FirebaseFirestore.instance;
@@ -93,18 +32,19 @@ class _MyHomePageState extends State<MyHomePage> {
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
-          title: const Text('Select Users'),
-          content: SizedBox(
+          title: Text('Select Users'),
+          content: Container(
             width: double.maxFinite,
             child: StreamBuilder<QuerySnapshot>(
               stream: firestore.collection('Users').snapshots(),
-              builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
+              builder: (BuildContext context,
+                  AsyncSnapshot<QuerySnapshot> snapshot) {
                 if (snapshot.hasError) {
                   return Text('Error: ${snapshot.error}');
                 }
 
                 if (snapshot.connectionState == ConnectionState.waiting) {
-                  return const CircularProgressIndicator();
+                  return CircularProgressIndicator();
                 }
 
                 List<QueryDocumentSnapshot> documents = snapshot.data!.docs;
@@ -153,7 +93,7 @@ class _MyHomePageState extends State<MyHomePage> {
           ),
           actions: <Widget>[
             TextButton(
-              child: const Text('Cancel'),
+              child: Text('Cancel'),
               onPressed: () {
                 setState(() {
                   selectedUserIds.clear();
@@ -162,7 +102,7 @@ class _MyHomePageState extends State<MyHomePage> {
               },
             ),
             TextButton(
-              child: const Text('OK'),
+              child: Text('OK'),
               onPressed: () {
                 // Process the selected users
                 // selectedUserIds contains the selected user IDs
@@ -186,89 +126,94 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   void _createGroupChat() async {
-  print('Creating group chat...');
+    print('Creating group chat...');
 
-  List<String> allMemberIds = [...selectedUserIds]; // Include selected user IDs
-  allMemberIds.add(FirebaseAuth.instance.currentUser!.uid); // Include current user ID
+    List<String> allMemberIds = [
+      ...selectedUserIds
+    ]; // Include selected user IDs
+    allMemberIds
+        .add(FirebaseAuth.instance.currentUser!.uid); // Include current user ID
 
-  // Create a new group chat document in Firestore
-  final groupChatRef = await firestore.collection('GroupChats').add({
-    'members': allMemberIds,
-    // Add any additional fields you want for the group chat document
-  });
+    // Create a new group chat document in Firestore
+    final groupChatRef = await firestore.collection('GroupChats').add({
+      'members': allMemberIds,
+      // Add any additional fields you want for the group chat document
+    });
 
-  // Get the newly created group chat ID
-  final groupChatId = groupChatRef.id;
-  print('Group chat ID: $groupChatId');
+    // Get the newly created group chat ID
+    final groupChatId = groupChatRef.id;
+    print('Group chat ID: $groupChatId');
 
-  // Create a new message collection for the group chat
-  await groupChatRef.collection('Messages').add({
-    'senderId': FirebaseAuth.instance.currentUser!.uid,
-    'message': 'Welcome to the group chat!', // Add a welcome message or any initial message
-    'timestamp': DateTime.now(),
-  });
+    // Create a new message collection for the group chat
+    await groupChatRef.collection('Messages').add({
+      'senderId': FirebaseAuth.instance.currentUser!.uid,
+      'message':
+          'Welcome to the group chat!', // Add a welcome message or any initial message
+      'timestamp': DateTime.now(),
+    });
 
-  // Clear the selected user IDs
-  setState(() {
-    selectedUserIds.clear();
-  });
+    // Clear the selected user IDs
+    setState(() {
+      selectedUserIds.clear();
+    });
 
-  print('Group chat created successfully');
+    print('Group chat created successfully');
 
-  // Navigate to the group chat page with the group chat ID
-  Navigator.of(context).push(
-    MaterialPageRoute(
-      builder: (context) {
-        return GroupPage(
-          selectedUserIds: selectedUserIds,
-          groupChatId: groupChatId,
-        );
-      },
-    ),
-  );
-}
+    // Navigate to the group chat page with the group chat ID
+    Navigator.of(context).push(
+      MaterialPageRoute(
+        builder: (context) {
+          return GroupPage(
+            selectedUserIds: selectedUserIds,
+            groupChatId: groupChatId,
+            groupName: '',
+          );
+        },
+      ),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.indigo.shade400,
-     appBar: AppBar(
-  backgroundColor: Colors.indigo.shade400,
-  title: const Text('Chat App'),
-  elevation: 0,
-  centerTitle: true,
-  actions: [
-    IconButton(
-      onPressed: () {
-        Navigator.push(
-          context,
-          MaterialPageRoute(
-            builder: (context) => GroupsHomePage(), // Replace GroupsHomePage with the actual group home page widget
+      appBar: AppBar(
+        backgroundColor: Colors.indigo.shade400,
+        title: const Text('Chat App'),
+        elevation: 0,
+        centerTitle: true,
+        actions: [
+          IconButton(
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) =>
+                      GroupsHomePage(), // Replace GroupsHomePage with the actual group home page widget
+                ),
+              );
+            },
+            icon: Icon(
+              Icons.group,
+              size: 30,
+            ),
           ),
-        );
-      },
-      icon: const Icon(
-        Icons.group,
-        size: 30,
+          Padding(
+            padding: const EdgeInsets.only(right: 10.0),
+            child: IconButton(
+              onPressed: () {
+                setState(() {
+                  open = !open;
+                });
+              },
+              icon: Icon(
+                open ? Icons.close_rounded : Icons.search_rounded,
+                size: 30,
+              ),
+            ),
+          )
+        ],
       ),
-    ),
-    Padding(
-      padding: const EdgeInsets.only(right: 10.0),
-      child: IconButton(
-        onPressed: () {
-          setState(() {
-            open = !open;
-          });
-        },
-        icon: Icon(
-          open ? Icons.close_rounded : Icons.search_rounded,
-          size: 30,
-        ),
-      ),
-    )
-  ],
-),
-
       drawer: ChatWidgets.drawer(context),
       body: SafeArea(
         child: Stack(
@@ -305,11 +250,10 @@ class _MyHomePageState extends State<MyHomePage> {
                               List data = !snapshot.hasData
                                   ? []
                                   : snapshot.data!.docs
-                                      .where((element) =>
-                                          element['users']
-                                              .toString()
-                                              .contains(FirebaseAuth.instance
-                                                  .currentUser!.uid))
+                                      .where((element) => element['users']
+                                          .toString()
+                                          .contains(FirebaseAuth
+                                              .instance.currentUser!.uid))
                                       .toList();
                               return ListView.builder(
                                 scrollDirection: Axis.horizontal,
@@ -318,14 +262,14 @@ class _MyHomePageState extends State<MyHomePage> {
                                   List users = data[i]['users'];
                                   var friend = users.where((element) =>
                                       element !=
-                                      FirebaseAuth
-                                          .instance.currentUser!.uid);
+                                      FirebaseAuth.instance.currentUser!.uid);
                                   var user = friend.isNotEmpty
                                       ? friend.first
-                                      : users.where((element) =>
-                                          element ==
-                                          FirebaseAuth
-                                              .instance.currentUser!.uid)
+                                      : users
+                                          .where((element) =>
+                                              element ==
+                                              FirebaseAuth
+                                                  .instance.currentUser!.uid)
                                           .first;
                                   return FutureBuilder(
                                     future: firestore
@@ -381,19 +325,16 @@ class _MyHomePageState extends State<MyHomePage> {
                             padding:
                                 const EdgeInsets.symmetric(horizontal: 12.0),
                             child: StreamBuilder(
-                              stream:
-                                  firestore.collection('Rooms').snapshots(),
+                              stream: firestore.collection('Rooms').snapshots(),
                               builder: (context,
                                   AsyncSnapshot<QuerySnapshot> snapshot) {
                                 List data = !snapshot.hasData
                                     ? []
                                     : snapshot.data!.docs
-                                        .where((element) =>
-                                            element['users']
-                                                .toString()
-                                                .contains(FirebaseAuth
-                                                    .instance
-                                                    .currentUser!.uid))
+                                        .where((element) => element['users']
+                                            .toString()
+                                            .contains(FirebaseAuth
+                                                .instance.currentUser!.uid))
                                         .toList();
                                 return ListView.builder(
                                   itemCount: data.length,
@@ -401,14 +342,14 @@ class _MyHomePageState extends State<MyHomePage> {
                                     List users = data[i]['users'];
                                     var friend = users.where((element) =>
                                         element !=
-                                        FirebaseAuth
-                                            .instance.currentUser!.uid);
+                                        FirebaseAuth.instance.currentUser!.uid);
                                     var user = friend.isNotEmpty
                                         ? friend.first
-                                        : users.where((element) =>
-                                            element ==
-                                            FirebaseAuth
-                                                .instance.currentUser!.uid)
+                                        : users
+                                            .where((element) =>
+                                                element ==
+                                                FirebaseAuth
+                                                    .instance.currentUser!.uid)
                                             .first;
                                     return FutureBuilder(
                                       future: firestore
@@ -420,11 +361,11 @@ class _MyHomePageState extends State<MyHomePage> {
                                             ? Container()
                                             : ChatWidgets.card(
                                                 title: snap.data['name'],
-                                                subtitle:
-                                                    data[i]['last_message'],
+                                                subtitle: data[i]
+                                                    ['last_message'],
                                                 time: DateFormat('hh:mm a')
-                                                    .format(data[i]
-                                                            ['last_message_time']
+                                                    .format(data[i][
+                                                            'last_message_time']
                                                         .toDate()),
                                                 onTap: () {
                                                   Navigator.of(context).push(
@@ -463,14 +404,14 @@ class _MyHomePageState extends State<MyHomePage> {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => announcement.AnnouncementPage(),
+                      builder: (context) => Announcement.AnnouncementPage(),
                     ),
                   );
                 },
-                backgroundColor: Colors.indigo,
-                child: const Icon(
+                child: Icon(
                   Icons.announcement,
                 ),
+                backgroundColor: Colors.indigo,
               ),
             ),
             Positioned(
@@ -478,10 +419,10 @@ class _MyHomePageState extends State<MyHomePage> {
               right: 16,
               child: FloatingActionButton(
                 onPressed: _showUserListDialog,
-                backgroundColor: Colors.indigo,
-                child: const Icon(
+                child: Icon(
                   Icons.add,
                 ),
+                backgroundColor: Colors.indigo,
               ),
             ),
           ],
