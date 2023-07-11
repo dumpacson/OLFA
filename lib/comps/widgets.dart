@@ -1,7 +1,9 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_chat_app/comps/styles.dart';
 import 'package:flutterfire_ui/auth.dart';
+import '../groupPage.dart';
 import 'animated-dialog.dart';
 
 class ChatWidgets {
@@ -72,8 +74,7 @@ class ChatWidgets {
     );
   }
 
-  static Widget messagesCard(
-      bool check, message, time, {String? imageUrl}) {
+  static Widget messagesCard(bool check, message, time, {String? imageUrl}) {
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: Row(
@@ -108,7 +109,8 @@ class ChatWidgets {
                     ),
                   Text(
                     '$message\n\n$time',
-                    style: TextStyle(color: check ? Colors.white : Colors.black),
+                    style:
+                        TextStyle(color: check ? Colors.white : Colors.black),
                   ),
                 ],
               ),
@@ -139,8 +141,7 @@ class ChatWidgets {
       child: TextField(
         controller: con,
         decoration: Styles.messageTextFieldStyle(onSubmit: () {
-          onSubmit (con);
-          // onSubmit (sendPushMessage());
+          onSubmit(con);
         }),
       ),
     );
@@ -201,8 +202,7 @@ class ChatWidgets {
     );
   }
 
-
- static Widget announcements() {
+  static Widget announcements() {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 10.0),
       child: Card(
@@ -230,33 +230,76 @@ class ChatWidgets {
   }
 }
 
- class AnnouncementPage extends StatelessWidget {
-  const AnnouncementPage({super.key});
-
-    @override
-    Widget build(BuildContext context) {
-      return Scaffold(
-        appBar: AppBar(
-          title: const Text('Announcement Page'),
-        ),
-        body: const Center(
-          child: Text('This is the announcement page'),
-        ),
-      );
-    }
+class AnnouncementPage extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Announcement Page'),
+      ),
+      body: Center(
+        child: Text('This is the announcement page'),
+      ),
+    );
   }
+}
 
 class GroupsHomePage extends StatelessWidget {
-  const GroupsHomePage({super.key});
+  final FirebaseFirestore firestore = FirebaseFirestore.instance;
+  final User? currentUser = FirebaseAuth.instance.currentUser;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Groups'),
+        title: Text('Groups'),
       ),
-      body: const Center(
-        child: Text('Groups Home Page'),
+      body: StreamBuilder<QuerySnapshot>(
+        stream: firestore
+            .collection('GroupChats')
+            .where('members', arrayContains: currentUser!.uid)
+            .snapshots(),
+        builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
+          if (snapshot.hasError) {
+            return Text('Error: ${snapshot.error}');
+          }
+
+          if (snapshot.connectionState == ConnectionState.waiting) {
+            return CircularProgressIndicator();
+          }
+
+          List<QueryDocumentSnapshot> groupChats = snapshot.data!.docs;
+
+          return ListView.builder(
+            itemCount: groupChats.length,
+            itemBuilder: (BuildContext context, int index) {
+              QueryDocumentSnapshot groupChat = groupChats[index];
+              String groupChatId = groupChat.id;
+              List<dynamic> memberIds = groupChat['members'];
+              List<String> selectedUserIds =
+                  memberIds.map((id) => id.toString()).toList();
+              String groupName =
+                  ''; // Replace with the group name field from Firestore
+
+              return ListTile(
+                title: Text(groupName),
+                subtitle: Text('Group Chat ID: $groupChatId'),
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => GroupPage(
+                        groupChatId: groupChatId,
+                        selectedUserIds: selectedUserIds,
+                        groupName: '',
+                      ),
+                    ),
+                  );
+                },
+              );
+            },
+          );
+        },
       ),
     );
   }
