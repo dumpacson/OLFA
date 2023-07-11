@@ -251,3 +251,17 @@ class ChatWidgets {
       );
     }
   }
+
+class GroupsHomePage extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Groups'),
+      ),
+      body: Center(
+        child: Text('Groups Home Page'),
+      ),
+    );
+  }
+}
