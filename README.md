@@ -57,21 +57,17 @@ The general objectives of this mobile application are to develop a reliable, con
 	
 ## Features & Functionalities
 
+- **Authentication:**Students can register an account using their email accounts and their accounts will be associated with their emails. Students who have registered an account can easily log in and log out without having to register for a new account every time.
+
 - **Real-Time Chat:** The app provides a real-time chat feature that allows IIUM students to communicate with each other instantly. This feature enables students to engage in one-on-one or group conversations, fostering interaction and collaboration among residents of different mahallahs.
 
-- **Mahallah-specific Channels:** The app may include specific channels or chat rooms dedicated to each mahallah within the IIUM campus. This feature allows students to connect with peers from their own mahallah and discuss mahallah-specific topics or events.
+- **Mahallah-specific Channels:** The app may include specific channels or group chats dedicated to each mahallah within the IIUM campus. This feature allows students to connect with peers from their own mahallah and discuss mahallah-specific topics or events.
 
-- **Topic-based Discussions:** The app enables students to participate in topic-based discussions. It may offer different chat rooms or channels based on various subjects or interests, such as academics, extracurricular activities, campus events, or general discussions.
+- **Announcements:** The app provides an announcements page that are managed by the admins for students to get the latest & most reliable news regarding events happening in their respective Mahallahs.
 
-- **Information Sharing:** The app allows students to share information easily. They can post announcements, share important updates, or provide helpful resources within the chat platform. This feature facilitates the exchange of valuable information among IIUM students.
-
-- **Study Groups and Collaboration:** Olfa provides a platform for students to form study groups and collaborate on academic projects. Students can create dedicated chat groups for specific courses or subjects, facilitating discussions, resource sharing, and collaboration.
-
-- **User Profiles:** Each student using the app can create a personal profile. This feature allows students to provide basic information about themselves, including their mahallah, program of study, interests, and hobbies. User profiles enhance personal connections and help students find like-minded peers.
+- **Search:** The app allows students to search for the users available in the app using the search function. The students can search for other students that have registered for the app by their username and start a new chat with them.
 
 - **Notifications and Reminders:** The app sends notifications and reminders to users about important updates, upcoming events, or new messages in the chat. This feature ensures that students stay informed and engaged with the community.
-
-- **Search and Discovery:** The app may include a search functionality that allows students to find specific topics, keywords, or user profiles within the community. This feature makes it easier for students to locate relevant discussions or connect with peers who share similar interests.
 	
 	
 
@@ -111,10 +107,12 @@ Click [here](https://github.com/dumpacson/Blood-Bank-Management-System/issues/4#
 
 - [Flutter Shared Preferences API](https://pub.dev/packages/shared_preferences)
 
-
 - [Flutter: Bottom Tab Bar Navigation with FAB Button](https://www.youtube.com/watch?v=1y-gfskpMIM)
 
 - [Complete Guide Flutter Push Notifications with Firebase Cloud Messaging](https://www.youtube.com/watch?v=AUU6gbDni4Q)
 
+- [Flutter Form Validation | Flutter TextField Validation | Flutter TextFormField](https://www.youtube.com/watch?v=GFKqoIAPd0Q)
+
+- [Flutter Firebase Firestore CRUD Operations | Create, Read, Update & Delete](https://www.youtube.com/watch?v=n1PM9XcYD5s)
 
 <br></br>
