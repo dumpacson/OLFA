@@ -456,9 +456,9 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
       bottomNavigationBar: BottomAppBar(
         shape: const CircularNotchedRectangle(),
-        notchMargin: 20,
+        notchMargin: 10,
         child: SizedBox(
-          height: 60,
+          height: 58,
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: <Widget>[
@@ -466,7 +466,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   MaterialButton(
-                    minWidth: 130,
+                    minWidth: 70,
                     onPressed: () {
                       Navigator.push(
                         context,
@@ -490,7 +490,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     ),
                   ),
                   MaterialButton(
-                    minWidth: 130,
+                    minWidth: 70,
                     onPressed: () {
                       Navigator.push(
                         context,
@@ -515,17 +515,35 @@ class _MyHomePageState extends State<MyHomePage> {
                     ),
                   ),
                   MaterialButton(
-                    minWidth: 130,
+                    minWidth: 70,
                     onPressed: _showUserListDialog,
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Icon(
-                          Icons.add_circle,
+                          Icons.group_add_rounded,
                           color: currentTab == 0 ? Colors.indigo.shade400 : Colors.grey,
                         ),
                         Text(
-                          'New Group',
+                          'New Groups',
+                          style: TextStyle(color: currentTab == 0 ?  Colors.indigo.shade400 : Colors.grey),
+                        ),
+                      ],
+                    ),
+                  ),
+                  MaterialButton(
+                    minWidth: 70,
+                    onPressed: () {
+                    },
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Icon(
+                          Icons.chat,
+                          color: currentTab == 0 ? Colors.indigo.shade400 : Colors.grey,
+                        ),
+                        Text(
+                          'Chats',
                           style: TextStyle(color: currentTab == 0 ?  Colors.indigo.shade400 : Colors.grey),
                         ),
                       ],
