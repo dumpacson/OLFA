@@ -94,7 +94,24 @@ Click [here](https://github.com/dumpacson/Blood-Bank-Management-System/issues/4#
 
 
 ## References
-	
+
+- [Firebase Core API](https://pub.dev/packages/firebase_core)
+
+- [Firebase Authentication API](https://pub.dev/packages/firebase_auth)
+
+- [FlutterFire UI API](https://pub.dev/packages/flutterfire_ui)
+
+- [Firebase Cloud Firestore API](https://pub.dev/packages/cloud_firestore)
+
+- [Firebase Cloud Messaging API](https://pub.dev/packages/firebase_messaging)
+
+- [HTTP Requests API](https://pub.dev/packages/http)
+
+- [Flutter Local Notifications API](https://pub.dev/packages/flutter_local_notifications)
+
+- [Flutter Shared Preferences API](https://pub.dev/packages/shared_preferences)
+
+
 - [Flutter: Bottom Tab Bar Navigation with FAB Button](https://www.youtube.com/watch?v=1y-gfskpMIM)
 
 - [Complete Guide Flutter Push Notifications with Firebase Cloud Messaging](https://www.youtube.com/watch?v=AUU6gbDni4Q)
