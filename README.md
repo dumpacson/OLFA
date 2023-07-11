@@ -16,11 +16,13 @@ Abdelhadi Hadj Sahraoui (1919059)<br></br>
 
 Contributions:
 
+- Setup packages and plugins - Safwan, Tawfek, Sharif, Hadi
 - Authentication -
 - Notifications - Safwan
+- Group chat 
 - Chat -
 - Connection with Firebase - Safwan, Tawfek, Sharif, Hadi
-	
+- Announcements - Hadi
 	
 ## Table of Contents
 - [Introduction](#introduction)
