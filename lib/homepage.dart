@@ -23,6 +23,13 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   String? mtoken = "";
   late FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin = FlutterLocalNotificationsPlugin();
+  int currentTab =0;
+  final List<Widget> screens = [
+    const AnnouncementPage(),
+  ];
+
+  final PageStorageBucket bucket = PageStorageBucket();
+  Widget currentScreen = const AnnouncementPage();
 
   @override
   void initState() {
@@ -197,6 +204,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
     // Create a new group chat document in Firestore
     final groupChatRef = await firestore.collection('GroupChats').add({
+      'id': 'Mahallah Faruq',
       'members': allMemberIds,
       // Add any additional fields you want for the group chat document
     });
@@ -227,8 +235,8 @@ class _MyHomePageState extends State<MyHomePage> {
         builder: (context) {
           return GroupPage(
             selectedUserIds: selectedUserIds,
-            groupChatId: groupChatId,
-            groupName: '',
+            groupChatId: groupChatRef.id,
+            groupName: 'Mahallah Faruq',
           );
         },
       ),
@@ -245,21 +253,6 @@ class _MyHomePageState extends State<MyHomePage> {
         elevation: 0,
         centerTitle: true,
         actions: [
-          IconButton(
-            onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) =>
-                      GroupsHomePage(), // Replace GroupsHomePage with the actual group home page widget
-                ),
-              );
-            },
-            icon: const Icon(
-              Icons.group,
-              size: 30,
-            ),
-          ),
           Padding(
             padding: const EdgeInsets.only(right: 10.0),
             child: IconButton(
@@ -458,36 +451,90 @@ class _MyHomePageState extends State<MyHomePage> {
               ],
             ),
             ChatWidgets.searchBar(open),
-            Positioned(
-              bottom: 16,
-              left: 16,
-              child: FloatingActionButton(
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => announcement.AnnouncementPage(),
-                    ),
-                  );
-                },
-                backgroundColor: Colors.indigo,
-                child: const Icon(
-                  Icons.announcement,
-                ),
-              ),
-            ),
-            Positioned(
-              bottom: 16,
-              right: 16,
-              child: FloatingActionButton(
-                onPressed: _showUserListDialog,
-                backgroundColor: Colors.indigo,
-                child: const Icon(
-                  Icons.add,
-                ),
-              ),
-            ),
           ],
+        ),
+      ),
+      bottomNavigationBar: BottomAppBar(
+        shape: const CircularNotchedRectangle(),
+        notchMargin: 20,
+        child: SizedBox(
+          height: 60,
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: <Widget>[
+              Row(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  MaterialButton(
+                    minWidth: 130,
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => const announcement.AnnouncementPage(),
+                        ),
+                      );
+                    },
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Icon(
+                          Icons.announcement,
+                          color: currentTab == 0 ? Colors.indigo.shade400 : Colors.grey,
+                        ),
+                        Text(
+                          'Announcement',
+                          style: TextStyle(color: currentTab == 0 ?  Colors.indigo.shade400 : Colors.grey),
+                        )
+                      ],
+                    ),
+                  ),
+                  MaterialButton(
+                    minWidth: 130,
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) =>
+                              GroupsHomePage(), // Replace GroupsHomePage with the actual group home page widget
+                        ),
+                      );
+                    },
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Icon(
+                          Icons.group,
+                          color: currentTab == 0 ? Colors.indigo.shade400 : Colors.grey,
+                        ),
+                        Text(
+                          'Groups',
+                          style: TextStyle(color: currentTab == 0 ?  Colors.indigo.shade400 : Colors.grey),
+                        ),
+                      ],
+                    ),
+                  ),
+                  MaterialButton(
+                    minWidth: 130,
+                    onPressed: _showUserListDialog,
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Icon(
+                          Icons.add_circle,
+                          color: currentTab == 0 ? Colors.indigo.shade400 : Colors.grey,
+                        ),
+                        Text(
+                          'New Group',
+                          style: TextStyle(color: currentTab == 0 ?  Colors.indigo.shade400 : Colors.grey),
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
+            ],
+          ),
         ),
       ),
     );
