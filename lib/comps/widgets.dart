@@ -35,8 +35,6 @@ class ChatWidgets {
     );
   }
 
-
-
   static Widget circleProfile({onTap, name}) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 12.0),
@@ -141,7 +139,8 @@ class ChatWidgets {
       child: TextField(
         controller: con,
         decoration: Styles.messageTextFieldStyle(onSubmit: () {
-          onSubmit(con);
+          onSubmit (con);
+          // onSubmit (sendPushMessage());
         }),
       ),
     );
@@ -203,7 +202,6 @@ class ChatWidgets {
   }
 
 
-
  static Widget announcements() {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 10.0),
@@ -220,12 +218,6 @@ class ChatWidgets {
     );
   }
 
-
-
-
-
-
-
   static Widget searchField({Function(String)? onChange}) {
     return Container(
       margin: const EdgeInsets.all(10),
@@ -239,13 +231,15 @@ class ChatWidgets {
 }
 
  class AnnouncementPage extends StatelessWidget {
+  const AnnouncementPage({super.key});
+
     @override
     Widget build(BuildContext context) {
       return Scaffold(
         appBar: AppBar(
-          title: Text('Announcement Page'),
+          title: const Text('Announcement Page'),
         ),
-        body: Center(
+        body: const Center(
           child: Text('This is the announcement page'),
         ),
       );
@@ -253,13 +247,15 @@ class ChatWidgets {
   }
 
 class GroupsHomePage extends StatelessWidget {
+  const GroupsHomePage({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Groups'),
+        title: const Text('Groups'),
       ),
-      body: Center(
+      body: const Center(
         child: Text('Groups Home Page'),
       ),
     );
