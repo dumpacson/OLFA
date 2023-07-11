@@ -1,26 +1,46 @@
-import 'package:firebase_auth/firebase_auth.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:flutterfire_ui/auth.dart';
-import 'comps/widgets.dart';
+import 'package:flutter_chat_app/addannouncement.dart';
 
-class AnnouncementPage extends StatelessWidget {
-  final List<Announcement> announcements = [
-    Announcement(
-      title: 'Announcement 1',
-      description: 'This is the description of announcement 1.',
-      imageUrl: 'https://example.com/image1.jpg',
-    ),
-    Announcement(
-      title: 'Announcement 2',
-      description: 'This is the description of announcement 2.',
-      imageUrl: 'https://example.com/image2.jpg',
-    ),
-    Announcement(
-      title: 'Announcement 3',
-      description: 'This is the description of announcement 3.',
-      imageUrl: 'https://example.com/image3.jpg',
-    ),
-  ];
+class AnnouncementPage extends StatefulWidget {
+  @override
+  _AnnouncementPageState createState() => _AnnouncementPageState();
+}
+
+class _AnnouncementPageState extends State<AnnouncementPage> {
+  List<Announcement> announcements = [];
+
+  @override
+  void initState() {
+    super.initState();
+    fetchAnnouncements();
+  }
+
+  Future<void> fetchAnnouncements() async {
+    final snapshot = await FirebaseFirestore.instance.collection('announcements').get();
+    final List<Announcement> fetchedAnnouncements = [];
+    snapshot.docs.forEach((doc) {
+      final data = doc.data();
+      final announcement = Announcement(
+        title: data['title'] ?? '',
+        description: data['description'] ?? '',
+        imageUrl: data['imageUrl'] ?? '',
+      );
+      fetchedAnnouncements.add(announcement);
+    });
+    setState(() {
+      announcements = fetchedAnnouncements;
+    });
+  }
+
+  void addAnnouncementPage() {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => AddAnnouncement(),
+      ),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -49,6 +69,11 @@ class AnnouncementPage extends StatelessWidget {
           );
         },
       ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: addAnnouncementPage,
+        child: Icon(Icons.add),
+      ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
     );
   }
 }
@@ -63,53 +88,4 @@ class Announcement {
     required this.description,
     required this.imageUrl,
   });
-}
-
-drawer(context) {
-  return Drawer(
-    backgroundColor: Colors.indigo.shade400,
-    child: SafeArea(
-      child: Padding(
-        padding: const EdgeInsets.symmetric(vertical: 18.0, horizontal: 20),
-        child: Theme(
-          data: ThemeData.dark(),
-          child: Column(
-            children: [
-              const CircleAvatar(
-                radius: 60,
-                backgroundColor: Colors.grey,
-                child: Icon(
-                  Icons.person,
-                  size: 60,
-                  color: Colors.white,
-                ),
-              ),
-              const SizedBox(height: 10),
-              const Divider(
-                color: Colors.white,
-              ),
-              ListTile(
-                leading: const Icon(Icons.person),
-                title: const Text('Profile'),
-                onTap: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => const ProfileScreen(),
-                    ),
-                  );
-                },
-              ),
-              ChatWidgets.announcements(),
-              ListTile(
-                leading: const Icon(Icons.logout),
-                title: const Text('Logout'),
-                onTap: () async => await FirebaseAuth.instance.signOut(),
-              ),
-            ],
-          ),
-        ),
-      ),
-    ),
-  );
 }
