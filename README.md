@@ -13,6 +13,12 @@ Tawfek W. M. Elgaafarawy (1720305)
 Alsharif Mohammad Marwan Ahmad (1828937)
 
 Abdelhadi Hadj Sahraoui (1919059)<br></br>
+
+Contributions:
+
+- Authentication -
+- Notifications -
+- Chat -
 	
 	
 ## Table of Contents
@@ -35,7 +41,7 @@ Abdelhadi Hadj Sahraoui (1919059)<br></br>
 ## Introduction
 
 OLFA is an interactive chatting platform designed specifically for IIUM students to facilitate communication and foster a sense of community among residents of different mahallahs. This platform offers a convenient and engaging way for students to connect, exchange information, and share experiences with their peers across various mahallahs within the IIUM campus.
-With the lfa platform, IIUM students can participate in real-time chat conversations with fellow students from different mahallahs. This feature allows for instant communication, enabling students to ask questions, seek advice, or engage in discussions on various topics of interest. Whether it's sharing academic insights, organising study groups, or discussing campus events, OLFA serves as a virtual space for students to connect and support each other.
+With the OLFA platform, IIUM students can participate in real-time chat conversations with fellow students from different mahallahs. This feature allows for instant communication, enabling students to ask questions, seek advice, or engage in discussions with other mahallah residents. Whether it's sharing academic insights, organising study groups, or discussing campus events, OLFA serves as a virtual space for students to connect and support each other.
 
 	
 
@@ -49,15 +55,13 @@ The general objectives of this mobile application are to develop a reliable, con
 
 - **Exchange Information:** The app enables students to exchange information effectively. It allows them to share academic insights, ask questions, seek advice, and discuss various topics of interest related to their studies or campus life.
 
-- **Enhance Engagement:** Olfa seeks to enhance student engagement within the IIUM community. By offering a convenient and engaging platform, the app encourages students to actively participate in discussions, collaborate on projects, organise study groups, and stay informed about campus events.
-
-- **Support and Encourage:** The app aims to provide support and encouragement to IIUM students. It serves as a virtual space where students can find guidance, seek help, and receive encouragement from their peers, ultimately enhancing their overall university experience.
+- **Enhance Engagement:** OLFA seeks to enhance student engagement within the IIUM community. By offering a convenient and engaging platform, the app encourages students to actively participate in discussions, collaborate on projects, organise study groups, and stay informed about campus events.
 
 
 	
 ## Features & Functionalities
 
-- **Authentication:**Students can register an account using their email accounts and their accounts will be associated with their emails. Students who have registered an account can easily log in and log out without having to register for a new account every time.
+- **Authentication:** Students can register an account using their email accounts and their accounts will be associated with their emails. Students who have registered an account can easily log in and log out without having to register for a new account every time.
 
 - **Real-Time Chat:** The app provides a real-time chat feature that allows IIUM students to communicate with each other instantly. This feature enables students to engage in one-on-one or group conversations, fostering interaction and collaboration among residents of different mahallahs.
 
