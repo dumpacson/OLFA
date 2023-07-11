@@ -231,13 +231,15 @@ class ChatWidgets {
 }
 
 class AnnouncementPage extends StatelessWidget {
+  const AnnouncementPage({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Announcement Page'),
+        title: const Text('Announcement Page'),
       ),
-      body: Center(
+      body: const Center(
         child: Text('This is the announcement page'),
       ),
     );
@@ -248,11 +250,13 @@ class GroupsHomePage extends StatelessWidget {
   final FirebaseFirestore firestore = FirebaseFirestore.instance;
   final User? currentUser = FirebaseAuth.instance.currentUser;
 
+  GroupsHomePage({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Groups'),
+        title: const Text('Groups'),
       ),
       body: StreamBuilder<QuerySnapshot>(
         stream: firestore
@@ -265,7 +269,7 @@ class GroupsHomePage extends StatelessWidget {
           }
 
           if (snapshot.connectionState == ConnectionState.waiting) {
-            return CircularProgressIndicator();
+            return const CircularProgressIndicator();
           }
 
           List<QueryDocumentSnapshot> groupChats = snapshot.data!.docs;
