@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class Announcement {
   final String title;
@@ -36,12 +37,18 @@ class _GroupPageState extends State<GroupPage> {
   List<String> memberNames = [];
   String groupName = '';
   bool _isEditing = false;
+  late SharedPreferences _preferences;
 
   @override
   void initState() {
     super.initState();
+    initializePreferences();
     fetchMembers();
     fetchGroupName();
+  }
+
+  Future<void> initializePreferences() async {
+    _preferences = await SharedPreferences.getInstance();
   }
 
   Future<void> fetchMembers() async {
@@ -91,7 +98,7 @@ class _GroupPageState extends State<GroupPage> {
     }
   }
 
-  void _submitGroupName() {
+  void _submitGroupName() async {
     setState(() {
       _isEditing = false;
       groupName = _groupNameController.text.trim();
@@ -99,10 +106,26 @@ class _GroupPageState extends State<GroupPage> {
     });
 
     // Save the updated group name to Firestore
-    FirebaseFirestore.instance
+    await FirebaseFirestore.instance
         .collection('GroupChats')
         .doc(widget.groupChatId)
         .update({'groupName': groupName});
+
+    // Save the updated group name to SharedPreferences
+    _preferences.setString('group_name_${widget.groupChatId}', groupName);
+  }
+
+  String getUsername(String userId) {
+    final index = memberIds.indexOf(userId);
+    if (index != -1 && index < memberNames.length) {
+      return memberNames[index];
+    }
+    return userId;
+  }
+
+  String formatHour(DateTime timestamp) {
+    final hour = timestamp.hour.toString().padLeft(2, '0');
+    return '$hour:00';
   }
 
   @override
@@ -168,24 +191,45 @@ class _GroupPageState extends State<GroupPage> {
                   itemBuilder: (BuildContext context, int index) {
                     String senderId = messages[index]['senderId'];
                     String message = messages[index]['message'];
+                    DateTime timestamp = messages[index]['timestamp'].toDate();
+                    bool isCurrentUser = senderId == FirebaseAuth.instance.currentUser!.uid;
 
                     return Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: Align(
-                        alignment: memberIds.contains(senderId)
-                            ? Alignment.centerRight
-                            : Alignment.centerLeft,
+                        alignment: isCurrentUser ? Alignment.centerRight : Alignment.centerLeft,
                         child: Container(
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(8.0),
-                            color: memberIds.contains(senderId)
-                                ? Colors.blue
-                                : Colors.grey,
+                            color: isCurrentUser ? Colors.blue : Colors.grey,
                           ),
                           padding: const EdgeInsets.all(8.0),
-                          child: Text(
-                            message,
-                            style: TextStyle(color: Colors.white),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                isCurrentUser ? 'You' : getUsername(senderId),
+                                style: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  color: isCurrentUser ? Colors.white : Colors.black,
+                                ),
+                              ),
+                              SizedBox(height: 4.0),
+                              Text(
+                                message,
+                                style: TextStyle(
+                                  color: isCurrentUser ? Colors.white : Colors.black,
+                                ),
+                              ),
+                              SizedBox(height: 4.0),
+                              Text(
+                                formatHour(timestamp),
+                                style: TextStyle(
+                                  fontSize: 12.0,
+                                  color: isCurrentUser ? Colors.white70 : Colors.black45,
+                                ),
+                              ),
+                            ],
                           ),
                         ),
                       ),
