@@ -14,13 +14,13 @@ Alsharif Mohammad Marwan Ahmad (1828937)
 
 Abdelhadi Hadj Sahraoui (1919059)<br></br>
 
-Contributions:
+**Contributions:**
 
 - Setup packages and plugins - Safwan, Tawfek, Sharif, Hadi
-- Authentication - Safwan
+- Authentication - Tawfek
 - Notification - Safwan
-- Group chat 
-- Chat -
+- Group chat - Sharif, Tawfik
+- Chat - Safwan
 - Announcements - Hadi
 - Connection with Firebase - Safwan, Tawfek, Sharif, Hadi
 
