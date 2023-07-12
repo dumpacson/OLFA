@@ -19,7 +19,7 @@ Abdelhadi Hadj Sahraoui (1919059)<br></br>
 - Setup packages and plugins - Safwan, Tawfek, Sharif, Hadi
 - Authentication - Tawfek
 - Notification - Safwan
-- Group chat - Sharif, Tawfik
+- Group chat - Sharif, Tawfek
 - Chat - Safwan
 - Announcements - Hadi
 - Connection with Firebase - Safwan, Tawfek, Sharif, Hadi
@@ -32,9 +32,7 @@ Abdelhadi Hadj Sahraoui (1919059)<br></br>
 
 - [Features & Functionalities](#features--functionalities)
   
-- [Screen Navigation (Routing)](#screen-navigation-routing)
-
-- [Widgets (UI & Reusable)](#widgets-ui--reusable)
+- [Screen Navigation (Routing) & Widgets (UI & Reusable)](#screen-navigation-routing)
 
 - [Sequence Diagram](#sequence-diagram)
 
@@ -79,23 +77,14 @@ The general objectives of this mobile application are to develop a reliable, con
 
 
 
-## Screen Navigation (Routing)
-
+## Screen Navigation (Routing) & Widgets (UI & Reusable)
 The sitemap below contains information regarding the website's pages and the relationships between them.
 
 Click [here](https://github.com/dumpacson/OLFA/issues/1#issue-1799785490) to view the sitemap.<br/><br/>
 
 
 
-## Widgets (UI & Reusable)
-
-
-
-
 ## Sequence Diagram
-
-The [Sequence Diagram](https://github.com/dumpacson/Blood-Bank-Management-System/issues/4#issue-1512850541) below depicts how users interact with the Blood Donation Website. Starting with the general part of the website, The user opens the web browser and types in the URL of the website. The web browser sends a request to the server to access the website. The server receives the request and retrieves the necessary content from the database. The server sends the content back to the web browser. The web browser displays the content to the user.
-
 
 Click [here](https://github.com/dumpacson/Blood-Bank-Management-System/issues/4#issue-1512850541) to view the Sequence Diagram.<br/><br/>
 
