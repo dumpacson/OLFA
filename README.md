@@ -88,7 +88,7 @@ Click [here](https://github.com/dumpacson/OLFA/issues/1#issue-1799785490) to vie
 
 ## Sequence Diagram
 
-Click [here](https://github.com/dumpacson/OLFA/issues/2#issue-1800148781) to view the Sequence Diagram.<br/><br/>
+![Sequence Diagram](https://github.com/dumpacson/OLFA/blob/7544a66c58ec93b40866fdf844f6d3bc4d9b3d41/images/Blank%20diagram%20(13).png) to view the Sequence Diagram.<br/><br/>
 
 
 ## References
