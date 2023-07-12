@@ -82,7 +82,7 @@ The sitemap below contains information regarding the website's pages and the rel
 
 Click [here](https://github.com/dumpacson/OLFA/issues/1#issue-1799785490) to view the sitemap.<br/><br/>
 
-![Sitemap](https://github.com/dumpacson/olfa/images/OLFA Sitemap.png)
+![Sitemap](https://github.com/dumpacson/olfa/images/OLFA Sitemap.png?raw=true)
 
 
 
