@@ -78,9 +78,6 @@ The general objectives of this mobile application are to develop a reliable, con
 
 
 ## Screen Navigation (Routing) & Widgets (UI & Reusable)
-The sitemap below contains information regarding the website's pages and the relationships between them.
-
-Click [here](https://github.com/dumpacson/OLFA/issues/1#issue-1799785490) to view the sitemap.<br/><br/>
 
 ![Sitemap](https://github.com/dumpacson/OLFA/blob/0057734db075b3db4f3c5fa436edc7d315b36fa5/images/OLFA%20Sitemap.png)
 
@@ -88,7 +85,7 @@ Click [here](https://github.com/dumpacson/OLFA/issues/1#issue-1799785490) to vie
 
 ## Sequence Diagram
 
-![Sequence Diagram](https://github.com/dumpacson/OLFA/blob/7544a66c58ec93b40866fdf844f6d3bc4d9b3d41/images/Blank%20diagram%20(13).png) to view the Sequence Diagram.<br/><br/>
+![Sequence Diagram](https://github.com/dumpacson/OLFA/blob/7544a66c58ec93b40866fdf844f6d3bc4d9b3d41/images/Blank%20diagram%20(13).png)
 
 
 ## References
