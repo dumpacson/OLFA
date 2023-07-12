@@ -69,7 +69,7 @@ The general objectives of this mobile application are to develop a reliable, con
 
 - **Real-Time Chat:** The app provides a real-time chat feature that allows IIUM students to communicate with each other instantly. This feature enables students to engage in one-on-one or group conversations, fostering interaction and collaboration among residents of different mahallahs.
 
-- **Mahallah-specific Channels:** The app may include specific channels or group chats dedicated to each mahallah within the IIUM campus. This feature allows students to connect with peers from their own mahallah and discuss mahallah-specific topics or events.
+- **Group Channels:** The app may include specific channels or group chats dedicated to each mahallah within the IIUM campus. This feature allows students to connect with peers from their own mahallah and discuss mahallah-specific topics or events.
 
 - **Announcements:** The app provides an announcements page that are managed by the admins for students to get the latest & most reliable news regarding events happening in their respective Mahallahs.
 
