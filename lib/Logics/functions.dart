@@ -60,7 +60,7 @@ class Functions {
         Uri.parse('https://fcm.googleapis.com/fm/send'),
         headers: <String, String>{
           'Content-Type': 'application/json',
-          'Authorization': 'key=AAAA-j1OXII:APA91bFNTjaKU-sIOfeyJCPPRADsG1i9WgkJDxKIzRcpwL9nDIdPhL6Zv4-E0LB3XamWpj9nHtpl6NGYe9Q4yNg8v7PoWjHB6UgSX2b7Xr2oNfJBW-KAG1KDjjnRZWF15CGdIGj6H1Dl',
+          'Authorization': 'key=',
         },
         body: jsonEncode(
           <String, dynamic>{
