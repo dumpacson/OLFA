@@ -86,7 +86,7 @@ Click [here](https://github.com/dumpacson/OLFA/issues/1#issue-1799785490) to vie
 
 ## Sequence Diagram
 
-Click [here](https://github.com/dumpacson/Blood-Bank-Management-System/issues/4#issue-1512850541) to view the Sequence Diagram.<br/><br/>
+Click [here](https://github.com/dumpacson/OLFA/issues/2#issue-1800148781) to view the Sequence Diagram.<br/><br/>
 
 
 ## References
