@@ -32,7 +32,7 @@ Abdelhadi Hadj Sahraoui (1919059)<br></br>
 
 - [Features & Functionalities](#features--functionalities)
   
-- [Screen Navigation (Routing) & Widgets (UI & Reusable)](#screen-navigation-routing)
+- [Screen Navigation (Routing) & Widgets (UI & Reusable)](#screen-navigation-routing--widgets-ui--reusable)
 
 - [Sequence Diagram](#sequence-diagram)
 
