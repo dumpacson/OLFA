@@ -17,12 +17,12 @@ Abdelhadi Hadj Sahraoui (1919059)<br></br>
 **Contributions:**
 
 - Setup packages and plugins - Safwan, Tawfek, Sharif, Hadi
+- Connection with Firebase - Safwan, Tawfek, Sharif, Hadi
 - Authentication - Tawfek
 - Notification - Safwan
-- Group chat - Sharif, Tawfek
+- Group Chat - Sharif, Tawfek
 - Chat - Safwan
-- Announcements - Hadi
-- Connection with Firebase - Safwan, Tawfek, Sharif, Hadi
+- Announcement - Hadi
 
  
 ## Table of Contents
@@ -86,6 +86,7 @@ The general objectives of this mobile application are to develop a reliable, con
 ## Sequence Diagram
 
 ![Sequence Diagram](https://github.com/dumpacson/OLFA/blob/7544a66c58ec93b40866fdf844f6d3bc4d9b3d41/images/Blank%20diagram%20(13).png)
+
 
 
 ## References
