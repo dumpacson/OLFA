@@ -75,7 +75,7 @@ The general objectives of this mobile application are to develop a reliable, con
 
 - **Search:** The app allows students to search for the users available in the app using the search function. The students can search for other students that have registered for the app by their username and start a new chat with them.
 
-- **Notifications and Reminders:** The app sends notifications and reminders to users about important updates, upcoming events, or new messages in the chat. This feature ensures that students stay informed and engaged with the community.
+- **Notifications:** The app sends notifications to users about important updates, upcoming events, or new messages in the chat. This feature ensures that students stay informed and engaged with the community.
 
 
 
